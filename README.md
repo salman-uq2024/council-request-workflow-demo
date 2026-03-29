@@ -1,28 +1,40 @@
 # Council Request Workflow Demo
 
-A portfolio-ready TypeScript project that demonstrates a realistic internal service request workflow for an Automation and Application Specialist style role. The app is intentionally lightweight, business-oriented, and easy to run locally without external dependencies.
+A recruiter-friendly React and TypeScript portfolio project that models how internal service requests can be captured, reviewed, progressed, and audited in a council-style business environment.
 
-## Project Summary
+## Recruiter Snapshot
 
-This demo models a council-style internal workflow where business users submit service requests and an ICT or applications team triages, approves, delivers, and audits them. It is designed to show practical skills that align with application support, workflow design, service operations, and documentation.
+- Demonstrates practical workflow thinking, not just UI styling.
+- Shows typed front-end implementation with realistic request records and state transitions.
+- Reflects work relevant to automation, applications support, service operations, and business process improvement roles.
+- Runs locally with no backend, no cloud setup, and no external services.
 
-Included features:
+## What This Project Demonstrates
 
-- Request submission form for new internal requests
-- Status dashboard with queue visibility and workload summaries
-- Admin review screen for approval and workflow decisions
-- Audit/history view showing request-level and cross-request activity
-- Seeded mock data with local browser persistence
+This demo focuses on a common internal business problem: business units need a structured way to request automation, application support, reporting changes, access, or service desk assistance, while the delivery team needs visibility, governance, and auditability.
 
-## Why This Works As A Portfolio Piece
+The app intentionally stays small, but it still shows:
 
-This repository is structured to present well in a resume, portfolio, or interview because it demonstrates:
+- clear domain modelling with TypeScript
+- realistic workflow states and admin actions
+- business-facing UI for request intake and operational review
+- lightweight persistence and validation for a reliable demo experience
+- documentation written for both technical reviewers and non-technical hiring managers
 
-- TypeScript implementation with clear domain modelling
-- Sensible UI and information design for internal business users
-- Workflow thinking across intake, review, delivery, and auditability
-- Lightweight architecture choices appropriate for a local demo or proof of concept
-- Documentation that explains design intent and tradeoffs
+## Features And Business Value
+
+| Feature | Business value |
+| --- | --- |
+| Standardised request submission form | Reduces back-and-forth by capturing the key details needed for triage and delivery. |
+| Status dashboard | Gives teams quick operational visibility across workload, priority, ownership, and lifecycle state. |
+| Admin review workflow | Demonstrates approval controls, triage decisions, and structured progression through work states. |
+| Audit history view | Supports traceability, accountability, and lightweight governance for internal requests. |
+| Sample request records | Makes the demo credible immediately and helps reviewers understand likely business use cases. |
+| Validation and storage recovery | Prevents bad input and keeps the demo usable even if browser data becomes invalid. |
+
+## Why This Is Relevant For Automation / Application Roles
+
+Automation and application support roles are usually less about isolated coding exercises and more about translating business needs into manageable workflows, operational controls, and maintainable systems. This project shows that mindset by combining request intake, review logic, status tracking, data validation, and audit history in a format that feels like an internal business tool rather than a generic front-end sample.
 
 ## Stack
 
@@ -30,16 +42,14 @@ This repository is structured to present well in a resume, portfolio, or intervi
 - TypeScript
 - Vite
 - CSS
-- Local JSON seed data plus `localStorage` persistence
-
-No backend, cloud account, or external database is required.
+- Local JSON sample records plus `localStorage` persistence
 
 ## Quick Start
 
 ### Prerequisites
 
-- Node.js 18+ recommended
-- npm 9+ recommended
+- Node.js 18+
+- npm 9+
 
 ### Run Locally
 
@@ -57,24 +67,61 @@ npm run check
 npm run build
 ```
 
-## Demo Workflow
+## Demo Walkthrough
 
-1. Open the `Request Submission` view and create a new service request.
-2. Review the new item in the `Status Dashboard`.
-3. Move to `Admin Review` to approve, reject, or progress the request.
-4. Open `Audit History` to inspect the full timeline of actions.
-5. Use `Reset demo data` to restore the seeded examples.
+1. Open `Request Submission` and submit a new automation or support request.
+2. Review queue totals and request details in `Status Dashboard`.
+3. Move to `Admin Review` to progress, approve, reject, or complete a request.
+4. Open `Audit History` to inspect the request timeline and recent cross-request activity.
+5. Use `Reset demo data` to restore the built-in sample request records.
+
+## Screenshots
+
+### App Overview
+![App Overview](./screenshots/00-app-overview.png)
+
+### Request Submission
+![Request Submission](./screenshots/01-request-submission.png)
+
+### Status Dashboard
+![Status Dashboard](./screenshots/02-status-dashboard.png)
+
+### Admin Review
+![Admin Review](./screenshots/03-admin-review.png)
+
+### Audit History
+![Audit History](./screenshots/04-audit-history.png)
+
+## Sample Request Records
+
+Built-in records cover multiple realistic scenarios, including:
+
+- business process automation for compliance reminders
+- access provisioning with approval checks
+- reporting enhancement delivery
+- application support incident remediation
+- rejected automation work due to missing governance detail
+- new service desk communication request awaiting triage
+
+See [docs/sample-request-records.md](./docs/sample-request-records.md) for a quick reviewer-friendly summary.
 
 ## Repository Structure
 
 ```text
 .
 ├── architecture.md
+├── docs/
+│   ├── resume-bullets.md
+│   └── sample-request-records.md
 ├── screenshots/
 │   └── README.md
 ├── src/
 │   ├── components/
 │   ├── data/
+│   │   ├── requestOptions.ts
+│   │   ├── requestValidation.ts
+│   │   ├── sample-request-records.json
+│   │   └── workflow.ts
 │   ├── styles/
 │   ├── App.tsx
 │   ├── main.tsx
@@ -87,18 +134,26 @@ npm run build
 ## Documentation
 
 - Architecture overview: [architecture.md](./architecture.md)
+- Sample records: [docs/sample-request-records.md](./docs/sample-request-records.md)
+- Resume-ready bullets: [docs/resume-bullets.md](./docs/resume-bullets.md)
 - Screenshot guidance: [screenshots/README.md](./screenshots/README.md)
+
+## Practical Design Choices
+
+- No backend by design: the project is easy to review, clone, and run during an interview.
+- Local-first persistence: enough realism for a demo without introducing deployment overhead.
+- Minimal validation and error states: practical quality improvements without overengineering the app.
+- Small, named data utilities: keeps request options, validation, and workflow logic easier to review.
 
 ## Suggested Resume Framing
 
-You could describe this project as:
+One concise framing option:
 
-> Built a TypeScript-based internal service request workflow demo that models request intake, approval, status tracking, and audit history for a council-style business environment using a lightweight local-first architecture.
+> Built a TypeScript-based internal service request workflow demo that models request intake, approval, status tracking, validation, and audit history for a council-style operating environment using a lightweight local-first architecture.
 
-## Future Enhancements
+## Natural Next Steps
 
-- Add role-based views for requester, analyst, and administrator personas
-- Replace `localStorage` with a small API or SQLite-backed service layer
-- Add filtering, SLA indicators, and exportable audit reports
-- Add automated tests around request state transitions
-
+- Add search, filtering, and SLA indicators for queue management
+- Introduce role-specific views for requester, analyst, and approver personas
+- Replace `localStorage` with a small API or SQLite-backed persistence layer
+- Add automated tests around validation rules and workflow transitions

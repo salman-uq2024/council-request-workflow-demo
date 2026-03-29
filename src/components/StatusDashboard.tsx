@@ -1,4 +1,5 @@
 import { ServiceRequest } from '../types';
+import { requestStatusOrder } from '../data/requestOptions';
 import { formatDate, getStatusCounts } from '../data/workflow';
 
 interface StatusDashboardProps {
@@ -8,15 +9,6 @@ interface StatusDashboardProps {
   onOpenAdmin: () => void;
   onOpenAudit: () => void;
 }
-
-const statusOrder = [
-  'Submitted',
-  'In Review',
-  'Approved',
-  'Rejected',
-  'In Progress',
-  'Completed',
-] as const;
 
 export function StatusDashboard({
   requests,
@@ -35,6 +27,23 @@ export function StatusDashboard({
       new Date(right.submittedAt).getTime() - new Date(left.submittedAt).getTime(),
   );
 
+  if (!requests.length) {
+    return (
+      <section className="panel">
+        <div className="panel-header">
+          <div>
+            <p className="eyebrow">Operational View</p>
+            <h2>Service request status dashboard</h2>
+          </div>
+        </div>
+        <div className="empty-state">
+          <h3>No request records available</h3>
+          <p>Submit a request or reset the demo data to repopulate the workflow.</p>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="panel">
       <div className="panel-header">
@@ -49,7 +58,7 @@ export function StatusDashboard({
       </div>
 
       <div className="summary-grid">
-        {statusOrder.map((status) => (
+        {requestStatusOrder.map((status) => (
           <article key={status} className="summary-card">
             <span className="summary-label">{status}</span>
             <strong className="summary-value">{statusCounts[status]}</strong>

@@ -4,3 +4,7 @@ dist
 *.tsbuildinfo
 vite.config.js
 vite.config.d.ts
+
+# local build artifacts
+node_modules/
+dist/

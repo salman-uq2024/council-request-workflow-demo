@@ -1,0 +1,237 @@
+[
+  {
+    "id": "REQ-2026-001",
+    "title": "Automate monthly building compliance reminder letters",
+    "category": "Business Process Automation",
+    "description": "Create a workflow to generate reminder tasks and outgoing correspondence for upcoming building compliance inspections.",
+    "department": "Planning and Regulatory Services",
+    "location": "Nicholas Street Precinct",
+    "priority": "High",
+    "requesterName": "Emma Collins",
+    "requesterEmail": "emma.collins@ipswich.demo",
+    "submittedAt": "2026-03-18T08:30:00.000Z",
+    "status": "In Review",
+    "assignedTeam": "Applications and Automation",
+    "targetDate": "2026-03-29T17:00:00.000Z",
+    "history": [
+      {
+        "id": "AUD-REQ-2026-001-1",
+        "timestamp": "2026-03-18T08:30:00.000Z",
+        "actor": "Emma Collins",
+        "action": "Request submitted",
+        "note": "Submitted with supporting notes for compliance operations."
+      },
+      {
+        "id": "AUD-REQ-2026-001-2",
+        "timestamp": "2026-03-18T11:15:00.000Z",
+        "actor": "Automation Coordinator",
+        "action": "Request triaged",
+        "note": "Flagged as suitable for workflow automation review."
+      },
+      {
+        "id": "AUD-REQ-2026-001-3",
+        "timestamp": "2026-03-19T01:00:00.000Z",
+        "actor": "ICT Service Desk",
+        "action": "Moved to review",
+        "note": "Assigned to Applications and Automation for feasibility assessment."
+      }
+    ]
+  },
+  {
+    "id": "REQ-2026-002",
+    "title": "Provision access to procurement contract register",
+    "category": "Access / Permissions",
+    "description": "Grant team lead access to the internal contract register and confirm delegated approval has been recorded.",
+    "department": "Corporate Services",
+    "location": "1 Nicholas Street",
+    "priority": "Medium",
+    "requesterName": "Nathan Doyle",
+    "requesterEmail": "nathan.doyle@ipswich.demo",
+    "submittedAt": "2026-03-20T02:20:00.000Z",
+    "status": "Approved",
+    "assignedTeam": "Identity and Access Management",
+    "targetDate": "2026-03-26T17:00:00.000Z",
+    "history": [
+      {
+        "id": "AUD-REQ-2026-002-1",
+        "timestamp": "2026-03-20T02:20:00.000Z",
+        "actor": "Nathan Doyle",
+        "action": "Request submitted",
+        "note": "Role change requires access adjustment."
+      },
+      {
+        "id": "AUD-REQ-2026-002-2",
+        "timestamp": "2026-03-20T05:45:00.000Z",
+        "actor": "ICT Service Desk",
+        "action": "Moved to review",
+        "note": "Approval chain validated against manager delegation."
+      },
+      {
+        "id": "AUD-REQ-2026-002-3",
+        "timestamp": "2026-03-20T23:15:00.000Z",
+        "actor": "Applications Team Lead",
+        "action": "Request approved",
+        "note": "Access can proceed under standard onboarding controls."
+      }
+    ]
+  },
+  {
+    "id": "REQ-2026-003",
+    "title": "Refresh animal management dashboard metrics",
+    "category": "Data / Reporting",
+    "description": "Update reporting logic so field activity and response time metrics can be presented in the monthly management dashboard.",
+    "department": "Community, Culture and Economy",
+    "location": "Riverview Depot",
+    "priority": "Medium",
+    "requesterName": "Sophie Martin",
+    "requesterEmail": "sophie.martin@ipswich.demo",
+    "submittedAt": "2026-03-14T23:05:00.000Z",
+    "status": "Completed",
+    "assignedTeam": "Business Systems",
+    "targetDate": "2026-03-21T17:00:00.000Z",
+    "history": [
+      {
+        "id": "AUD-REQ-2026-003-1",
+        "timestamp": "2026-03-14T23:05:00.000Z",
+        "actor": "Sophie Martin",
+        "action": "Request submitted",
+        "note": "Requested updates ahead of end-of-month reporting."
+      },
+      {
+        "id": "AUD-REQ-2026-003-2",
+        "timestamp": "2026-03-15T03:30:00.000Z",
+        "actor": "ICT Service Desk",
+        "action": "Moved to review",
+        "note": "Confirmed data source ownership with Animal Management."
+      },
+      {
+        "id": "AUD-REQ-2026-003-3",
+        "timestamp": "2026-03-15T22:10:00.000Z",
+        "actor": "Business Systems Lead",
+        "action": "Request approved",
+        "note": "Approved as minor enhancement."
+      },
+      {
+        "id": "AUD-REQ-2026-003-4",
+        "timestamp": "2026-03-17T00:45:00.000Z",
+        "actor": "BI Analyst",
+        "action": "Work started",
+        "note": "Reporting logic updated in the staging extract."
+      },
+      {
+        "id": "AUD-REQ-2026-003-5",
+        "timestamp": "2026-03-20T04:00:00.000Z",
+        "actor": "BI Analyst",
+        "action": "Request completed",
+        "note": "Dashboard refreshed and validated with the business owner."
+      }
+    ]
+  },
+  {
+    "id": "REQ-2026-004",
+    "title": "Stabilise property search application timeout errors",
+    "category": "Application Support",
+    "description": "Investigate recurring timeout errors in the property search application and implement a configuration fix before the next customer service peak.",
+    "department": "Customer Experience",
+    "location": "Springfield Customer Service Centre",
+    "priority": "High",
+    "requesterName": "Liam Fraser",
+    "requesterEmail": "liam.fraser@ipswich.demo",
+    "submittedAt": "2026-03-21T00:50:00.000Z",
+    "status": "In Progress",
+    "assignedTeam": "Applications and Automation",
+    "targetDate": "2026-03-26T17:00:00.000Z",
+    "history": [
+      {
+        "id": "AUD-REQ-2026-004-1",
+        "timestamp": "2026-03-21T00:50:00.000Z",
+        "actor": "Liam Fraser",
+        "action": "Request submitted",
+        "note": "Raised after repeated timeouts affected front-counter staff."
+      },
+      {
+        "id": "AUD-REQ-2026-004-2",
+        "timestamp": "2026-03-21T02:10:00.000Z",
+        "actor": "ICT Service Desk",
+        "action": "Moved to review",
+        "note": "Initial checks confirmed application-specific issue."
+      },
+      {
+        "id": "AUD-REQ-2026-004-3",
+        "timestamp": "2026-03-21T05:30:00.000Z",
+        "actor": "Applications Team Lead",
+        "action": "Request approved",
+        "note": "Approved due to operational impact on customer-facing staff."
+      },
+      {
+        "id": "AUD-REQ-2026-004-4",
+        "timestamp": "2026-03-21T23:40:00.000Z",
+        "actor": "Application Support Analyst",
+        "action": "Work started",
+        "note": "Investigating connection pool and timeout settings in the application environment."
+      }
+    ]
+  },
+  {
+    "id": "REQ-2026-005",
+    "title": "Automate contractor onboarding checklist approvals",
+    "category": "Business Process Automation",
+    "description": "Build an automated approval workflow for contractor onboarding tasks across facilities, procurement, and ICT handover checkpoints.",
+    "department": "Works and Field Services",
+    "location": "Redbank Depot",
+    "priority": "Medium",
+    "requesterName": "Ava Thompson",
+    "requesterEmail": "ava.thompson@ipswich.demo",
+    "submittedAt": "2026-03-17T04:15:00.000Z",
+    "status": "Rejected",
+    "assignedTeam": "Applications and Automation",
+    "targetDate": "2026-03-27T17:00:00.000Z",
+    "history": [
+      {
+        "id": "AUD-REQ-2026-005-1",
+        "timestamp": "2026-03-17T04:15:00.000Z",
+        "actor": "Ava Thompson",
+        "action": "Request submitted",
+        "note": "Submitted as part of a broader onboarding improvement effort."
+      },
+      {
+        "id": "AUD-REQ-2026-005-2",
+        "timestamp": "2026-03-17T06:00:00.000Z",
+        "actor": "ICT Service Desk",
+        "action": "Moved to review",
+        "note": "Escalated for automation feasibility and ownership review."
+      },
+      {
+        "id": "AUD-REQ-2026-005-3",
+        "timestamp": "2026-03-18T00:20:00.000Z",
+        "actor": "Applications Team Lead",
+        "action": "Request rejected",
+        "note": "Returned pending confirmation of process owner, source form standardisation, and approval policy."
+      }
+    ]
+  },
+  {
+    "id": "REQ-2026-006",
+    "title": "Create outage notification template for GIS maintenance windows",
+    "category": "Service Desk",
+    "description": "Prepare a standard service notification template and workflow steps for planned GIS maintenance so internal teams receive consistent advance notice.",
+    "department": "Infrastructure and Environment",
+    "location": "Council Chambers",
+    "priority": "Low",
+    "requesterName": "Noah Patel",
+    "requesterEmail": "noah.patel@ipswich.demo",
+    "submittedAt": "2026-03-22T01:10:00.000Z",
+    "status": "Submitted",
+    "assignedTeam": "ICT Service Desk",
+    "targetDate": "2026-04-01T17:00:00.000Z",
+    "history": [
+      {
+        "id": "AUD-REQ-2026-006-1",
+        "timestamp": "2026-03-22T01:10:00.000Z",
+        "actor": "Noah Patel",
+        "action": "Request submitted",
+        "note": "Logged to improve communication consistency for scheduled maintenance windows."
+      }
+    ]
+  }
+]

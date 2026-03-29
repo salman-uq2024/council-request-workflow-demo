@@ -1,20 +1,14 @@
 import { FormEvent, useState } from 'react';
+import { requestCategories, requestPriorities } from '../data/requestOptions';
+import {
+  normalizeRequestFormValues,
+  validateRequestForm,
+} from '../data/requestValidation';
 import { RequestCategory, RequestFormValues, RequestPriority } from '../types';
 
 interface RequestFormProps {
   onSubmit: (values: RequestFormValues) => void;
 }
-
-const categories: RequestCategory[] = [
-  'Access / Permissions',
-  'Application Support',
-  'Business Process Automation',
-  'Data / Reporting',
-  'Infrastructure',
-  'Service Desk',
-];
-
-const priorities: RequestPriority[] = ['Low', 'Medium', 'High'];
 
 const initialValues: RequestFormValues = {
   title: '',
@@ -29,11 +23,41 @@ const initialValues: RequestFormValues = {
 
 export function RequestForm({ onSubmit }: RequestFormProps) {
   const [values, setValues] = useState<RequestFormValues>(initialValues);
+  const [errors, setErrors] = useState<
+    Partial<Record<keyof RequestFormValues, string>>
+  >({});
+
+  function updateField<Key extends keyof RequestFormValues>(
+    key: Key,
+    value: RequestFormValues[Key],
+  ) {
+    setValues((current) => ({ ...current, [key]: value }));
+    setErrors((current) => {
+      if (!current[key]) {
+        return current;
+      }
+
+      const nextErrors = { ...current };
+      delete nextErrors[key];
+      return nextErrors;
+    });
+  }
 
   function handleFormSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    onSubmit(values);
+    const normalizedValues = normalizeRequestFormValues(values);
+    const nextErrors = validateRequestForm(normalizedValues);
+
+    setValues(normalizedValues);
+    setErrors(nextErrors);
+
+    if (Object.keys(nextErrors).length > 0) {
+      return;
+    }
+
+    onSubmit(normalizedValues);
     setValues(initialValues);
+    setErrors({});
   }
 
   return (
@@ -50,16 +74,22 @@ export function RequestForm({ onSubmit }: RequestFormProps) {
       </div>
 
       <form className="form-grid" onSubmit={handleFormSubmit}>
+        {Object.keys(errors).length > 0 && (
+          <div className="form-message form-message-error full-width" role="alert">
+            Fix the highlighted fields before submitting the request.
+          </div>
+        )}
+
         <label>
           Request title
           <input
             required
             value={values.title}
-            onChange={(event) =>
-              setValues((current) => ({ ...current, title: event.target.value }))
-            }
+            aria-invalid={Boolean(errors.title)}
+            onChange={(event) => updateField('title', event.target.value)}
             placeholder="Example: Automate invoice reconciliation alerts"
           />
+          {errors.title && <span className="field-error">{errors.title}</span>}
         </label>
 
         <label>
@@ -67,13 +97,10 @@ export function RequestForm({ onSubmit }: RequestFormProps) {
           <select
             value={values.category}
             onChange={(event) =>
-              setValues((current) => ({
-                ...current,
-                category: event.target.value as RequestCategory,
-              }))
+              updateField('category', event.target.value as RequestCategory)
             }
           >
-            {categories.map((category) => (
+            {requestCategories.map((category) => (
               <option key={category} value={category}>
                 {category}
               </option>
@@ -86,14 +113,13 @@ export function RequestForm({ onSubmit }: RequestFormProps) {
           <input
             required
             value={values.department}
-            onChange={(event) =>
-              setValues((current) => ({
-                ...current,
-                department: event.target.value,
-              }))
-            }
+            aria-invalid={Boolean(errors.department)}
+            onChange={(event) => updateField('department', event.target.value)}
             placeholder="Example: Infrastructure and Environment"
           />
+          {errors.department && (
+            <span className="field-error">{errors.department}</span>
+          )}
         </label>
 
         <label>
@@ -101,11 +127,11 @@ export function RequestForm({ onSubmit }: RequestFormProps) {
           <input
             required
             value={values.location}
-            onChange={(event) =>
-              setValues((current) => ({ ...current, location: event.target.value }))
-            }
+            aria-invalid={Boolean(errors.location)}
+            onChange={(event) => updateField('location', event.target.value)}
             placeholder="Example: Ipswich Civic Centre"
           />
+          {errors.location && <span className="field-error">{errors.location}</span>}
         </label>
 
         <label>
@@ -113,13 +139,10 @@ export function RequestForm({ onSubmit }: RequestFormProps) {
           <select
             value={values.priority}
             onChange={(event) =>
-              setValues((current) => ({
-                ...current,
-                priority: event.target.value as RequestPriority,
-              }))
+              updateField('priority', event.target.value as RequestPriority)
             }
           >
-            {priorities.map((priority) => (
+            {requestPriorities.map((priority) => (
               <option key={priority} value={priority}>
                 {priority}
               </option>
@@ -132,14 +155,13 @@ export function RequestForm({ onSubmit }: RequestFormProps) {
           <input
             required
             value={values.requesterName}
-            onChange={(event) =>
-              setValues((current) => ({
-                ...current,
-                requesterName: event.target.value,
-              }))
-            }
+            aria-invalid={Boolean(errors.requesterName)}
+            onChange={(event) => updateField('requesterName', event.target.value)}
             placeholder="Example: Jordan Richards"
           />
+          {errors.requesterName && (
+            <span className="field-error">{errors.requesterName}</span>
+          )}
         </label>
 
         <label>
@@ -148,14 +170,13 @@ export function RequestForm({ onSubmit }: RequestFormProps) {
             required
             type="email"
             value={values.requesterEmail}
-            onChange={(event) =>
-              setValues((current) => ({
-                ...current,
-                requesterEmail: event.target.value,
-              }))
-            }
+            aria-invalid={Boolean(errors.requesterEmail)}
+            onChange={(event) => updateField('requesterEmail', event.target.value)}
             placeholder="name@ipswich.demo"
           />
+          {errors.requesterEmail && (
+            <span className="field-error">{errors.requesterEmail}</span>
+          )}
         </label>
 
         <label className="full-width">
@@ -164,14 +185,13 @@ export function RequestForm({ onSubmit }: RequestFormProps) {
             required
             rows={5}
             value={values.description}
-            onChange={(event) =>
-              setValues((current) => ({
-                ...current,
-                description: event.target.value,
-              }))
-            }
+            aria-invalid={Boolean(errors.description)}
+            onChange={(event) => updateField('description', event.target.value)}
             placeholder="Describe the current problem, expected outcome, and any deadlines or compliance considerations."
           />
+          {errors.description && (
+            <span className="field-error">{errors.description}</span>
+          )}
         </label>
 
         <div className="form-actions full-width">
@@ -186,4 +206,3 @@ export function RequestForm({ onSubmit }: RequestFormProps) {
     </section>
   );
 }
-

@@ -41,6 +41,23 @@ export function AdminReviewPanel({
 
   const actions = selectedRequest ? getActionOptions(selectedRequest.status) : [];
 
+  if (!requests.length) {
+    return (
+      <section className="panel">
+        <div className="panel-header">
+          <div>
+            <p className="eyebrow">Queue</p>
+            <h2>Admin review worklist</h2>
+          </div>
+        </div>
+        <div className="empty-state">
+          <h3>No request records available</h3>
+          <p>Reset the sample data or create a new request to test review actions.</p>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="admin-layout">
       <article className="panel queue-panel">
@@ -128,19 +145,25 @@ export function AdminReviewPanel({
             </label>
 
             <div className="toolbar-actions">
-              {actions.map((action) => (
-                <button
-                  key={action}
-                  className={action === 'reject' ? 'button danger' : 'button primary'}
-                  type="button"
-                  onClick={() => {
-                    onAction(selectedRequest.id, action, note);
-                    setNote('');
-                  }}
-                >
-                  {actionLabels[action]}
-                </button>
-              ))}
+              {actions.length ? (
+                actions.map((action) => (
+                  <button
+                    key={action}
+                    className={action === 'reject' ? 'button danger' : 'button primary'}
+                    type="button"
+                    onClick={() => {
+                      onAction(selectedRequest.id, action, note);
+                      setNote('');
+                    }}
+                  >
+                    {actionLabels[action]}
+                  </button>
+                ))
+              ) : (
+                <p className="form-note">
+                  No further workflow actions are available for this request.
+                </p>
+              )}
             </div>
           </>
         ) : (

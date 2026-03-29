@@ -11,20 +11,36 @@ import {
   resetRequests,
   saveRequests,
 } from './data/workflow';
-import { AdminAction, RequestFormValues, ServiceRequest, ViewKey } from './types';
+import {
+  AdminAction,
+  AppNotice,
+  RequestFormValues,
+  ServiceRequest,
+  ViewKey,
+} from './types';
 
 export default function App() {
-  const [requests, setRequests] = useState<ServiceRequest[]>(() => loadRequests());
+  const [initialLoad] = useState(() => loadRequests());
+  const [requests, setRequests] = useState<ServiceRequest[]>(initialLoad.requests);
   const [activeView, setActiveView] = useState<ViewKey>('dashboard');
   const [selectedRequestId, setSelectedRequestId] = useState<string | null>(
-    requests[0]?.id ?? null,
+    initialLoad.requests[0]?.id ?? null,
   );
-  const [bannerMessage, setBannerMessage] = useState<string>(
-    'Demo data is stored locally in your browser for simple portfolio review.',
+  const [notice, setNotice] = useState<AppNotice>(() =>
+    initialLoad.warningMessage
+      ? { tone: 'error', message: initialLoad.warningMessage }
+      : {
+          tone: 'info',
+          message: 'Sample request data is stored locally in your browser for simple portfolio review.',
+        },
   );
 
   useEffect(() => {
-    saveRequests(requests);
+    const saveError = saveRequests(requests);
+
+    if (saveError) {
+      setNotice({ tone: 'error', message: saveError });
+    }
   }, [requests]);
 
   useEffect(() => {
@@ -45,22 +61,45 @@ export default function App() {
       return [nextRequest, ...current];
     });
     setSelectedRequestId(nextRequest.id);
-    setBannerMessage('New request submitted and added to the dashboard queue.');
+    setNotice({
+      tone: 'success',
+      message: 'New request submitted and added to the dashboard queue.',
+    });
     setActiveView('dashboard');
   }
 
   function handleAdminAction(requestId: string, action: AdminAction, note: string) {
+    const requestExists = requests.some((request) => request.id === requestId);
+
+    if (!requestExists) {
+      setNotice({
+        tone: 'error',
+        message: 'The selected request record could not be found. Reset the demo data and try again.',
+      });
+      return;
+    }
+
     setRequests((current) =>
       applyAdminAction(current, requestId, action, note, 'Applications Team Lead'),
     );
-    setBannerMessage(`Request ${requestId} updated via the admin review workflow.`);
+    setNotice({
+      tone: 'success',
+      message: `Request ${requestId} updated via the admin review workflow.`,
+    });
   }
 
   function handleResetDemo() {
-    const nextRequests = resetRequests();
+    const { requests: nextRequests, warningMessage } = resetRequests();
     setRequests(nextRequests);
     setSelectedRequestId(nextRequests[0]?.id ?? null);
-    setBannerMessage('Demo data reset to the seeded council workflow examples.');
+    setNotice(
+      warningMessage
+        ? { tone: 'error', message: warningMessage }
+        : {
+            tone: 'success',
+            message: 'Demo data reset to the sample council workflow records.',
+          },
+    );
   }
 
   return (
@@ -86,8 +125,8 @@ export default function App() {
         </div>
       </header>
 
-      <div className="banner" role="status">
-        {bannerMessage}
+      <div className={`banner banner-${notice.tone}`} role="status">
+        {notice.message}
       </div>
 
       <ViewTabs activeView={activeView} onChange={setActiveView} />

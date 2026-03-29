@@ -52,6 +52,13 @@ export interface RequestFormValues {
   requesterEmail: string;
 }
 
+export type NoticeTone = 'info' | 'success' | 'error';
+
+export interface AppNotice {
+  tone: NoticeTone;
+  message: string;
+}
+
 export type AdminAction =
   | 'review'
   | 'approve'
@@ -61,4 +68,3 @@ export type AdminAction =
   | 'reopen';
 
 export type ViewKey = 'submit' | 'dashboard' | 'admin' | 'audit';
-

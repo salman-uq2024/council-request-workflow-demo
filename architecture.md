@@ -21,8 +21,9 @@ This project is a local-first internal workflow demo built to showcase the sort 
 
 ### Data Layer
 
-- Seed data stored in `src/data/seed-requests.json`
+- Sample request records stored in `src/data/sample-request-records.json`
 - Workflow and persistence helpers in `src/data/workflow.ts`
+- Shared request options and validation helpers in `src/data/requestOptions.ts` and `src/data/requestValidation.ts`
 - Browser `localStorage` used as the runtime persistence mechanism
 
 This keeps the demo self-contained while still showing a clear path toward a more formal service or database layer.
@@ -77,11 +78,13 @@ This allows the demo to show both operational state and governance history.
 
 ## Data Flow
 
-1. The app loads seeded request data on first run.
+1. The app loads bundled sample request data on first run.
 2. The initial dataset is cloned into browser storage.
 3. New submissions and admin actions update in-memory React state.
 4. A persistence effect writes the current request list back to `localStorage`.
 5. The audit view derives timelines directly from the stored request history.
+
+If the saved browser data is malformed, the app falls back to the bundled sample records and displays a simple recovery message instead of failing silently.
 
 ## Why This Architecture Fits The Brief
 
@@ -93,4 +96,3 @@ This allows the demo to show both operational state and governance history.
 ## Natural Next Step
 
 If this were expanded beyond a portfolio demo, the next step would be extracting the workflow functions into a small API-backed service and introducing user roles, search/filtering, and automated tests around transition rules.
-
