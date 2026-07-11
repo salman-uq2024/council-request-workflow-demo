@@ -2,6 +2,8 @@
 
 A recruiter-friendly React and TypeScript portfolio project that models how internal service requests can be captured, reviewed, progressed, and audited in a council-style business environment.
 
+[Case study: architecture, trade-offs, measured validation, and limitations](./docs/case-study.md)
+
 ## Recruiter Snapshot
 
 - Demonstrates practical workflow thinking, not just UI styling.
@@ -54,7 +56,7 @@ Automation and application support roles are usually less about isolated coding 
 ### Run Locally
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
@@ -91,6 +93,9 @@ npm run build
 
 ### Audit History
 ![Audit History](./screenshots/04-audit-history.png)
+
+### Mobile Dashboard
+![Mobile Dashboard](./screenshots/05-mobile-dashboard.png)
 
 ## Sample Request Records
 
