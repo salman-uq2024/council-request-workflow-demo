@@ -113,13 +113,13 @@ function isServiceRequest(value: unknown): value is ServiceRequest {
 }
 
 export function loadRequests(): RequestLoadResult {
-  const stored = window.localStorage.getItem(STORAGE_KEY);
-
-  if (!stored) {
-    return { requests: cloneSampleRequestRecords() };
-  }
-
   try {
+    const stored = window.localStorage.getItem(STORAGE_KEY);
+
+    if (!stored) {
+      return { requests: cloneSampleRequestRecords() };
+    }
+
     const parsed = JSON.parse(stored);
 
     if (!Array.isArray(parsed) || !parsed.every(isServiceRequest)) {
@@ -222,6 +222,11 @@ export function applyAdminAction(
 
   return requests.map((request) => {
     if (request.id !== requestId) {
+      return request;
+    }
+
+    // Enforce the same transition contract even when called outside the UI.
+    if (!getActionOptions(request.status).includes(adminAction)) {
       return request;
     }
 

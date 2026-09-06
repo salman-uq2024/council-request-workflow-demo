@@ -44,3 +44,7 @@ npm run check
 npm run build
 npm run dev
 ```
+
+## Regression coverage — 5 September 2026
+
+Eight domain tests now cover validation, audit preservation, invalid transitions, request IDs and blocked/corrupt browser storage. Tests, typecheck and build passed locally. See [quality and support](quality-and-support.md) for defect reproduction and acceptance scenarios.

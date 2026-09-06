@@ -1,15 +1,12 @@
 # Council Request Workflow Demo
 
-A recruiter-friendly React and TypeScript portfolio project that models how internal service requests can be captured, reviewed, progressed, and audited in a council-style business environment.
+A React and TypeScript service-request demo: submit, triage, approve, progress and review an audit timeline. It uses synthetic records and browser storage, so reviewers can run it without a backend or credentials.
 
-[Case study: architecture, trade-offs, measured validation, and limitations](./docs/case-study.md)
+[Case study](docs/case-study.md) · [Test and support guide](docs/quality-and-support.md) · [Regression tests](tests/workflow.test.cjs)
 
-## Recruiter Snapshot
+[![CI](https://github.com/salman-chowdhury/council-request-workflow-demo/actions/workflows/ci.yml/badge.svg)](https://github.com/salman-chowdhury/council-request-workflow-demo/actions/workflows/ci.yml)
 
-- Demonstrates practical workflow thinking, not just UI styling.
-- Shows typed front-end implementation with realistic request records and state transitions.
-- Reflects work relevant to automation, applications support, service operations, and business process improvement roles.
-- Runs locally with no backend, no cloud setup, and no external services.
+**Scope:** this is a local UI/workflow prototype. The admin view is a simulated persona, not authenticated authorisation; the editable local history is not a tamper-proof audit log.
 
 ## What This Project Demonstrates
 
@@ -50,7 +47,7 @@ Automation and application support roles are usually less about isolated coding 
 
 ### Prerequisites
 
-- Node.js 18+
+- Node.js 22+
 - npm 9+
 
 ### Run Locally
@@ -65,6 +62,7 @@ Open the local Vite URL shown in the terminal, usually `http://localhost:5173`.
 ### Verification
 
 ```bash
+npm test
 npm run check
 npm run build
 ```
@@ -161,4 +159,4 @@ One concise framing option:
 - Add search, filtering, and SLA indicators for queue management
 - Introduce role-specific views for requester, analyst, and approver personas
 - Replace `localStorage` with a small API or SQLite-backed persistence layer
-- Add automated tests around validation rules and workflow transitions
+- Add browser end-to-end tests alongside the existing domain regression tests
